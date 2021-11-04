@@ -6,6 +6,31 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// produtos a serem cadastrados
+model Produtos {
+  id String @id @unique @default(uuid())
+  tipo String
+  item String @unique 
+  descricao String
+  quantidade Int
+  entrada DateTime @default(now())
+  operador String
+
+  custos CustoProduto[]
+  @@map("produtos")
+}
+
+model CustoProduto {
+  id String @id @unique @default(uuid())
+  custo_unitario Float
+  margem_de_lucro Float
+  produtos Produtos @relation(fields: [item_id], references: [id])
+  
+  item_id String 
+
+  @@map("custos")
 }
