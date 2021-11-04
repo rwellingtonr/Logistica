@@ -1,0 +1,8 @@
+
+class EntryNewProductServices{
+
+
+}
+
+
+export {EntryNewProductServices}

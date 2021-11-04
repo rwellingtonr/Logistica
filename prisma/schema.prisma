@@ -22,7 +22,10 @@ model Produto {
   colaborador Colaborador @relation(fields: [colaborador_id], references: [id])
   colaborador_id String
 
-  custos CustoProduto[]
+  custo CustoProduto @relation(fields: [custo_id], references: [id])
+  
+  custo_id String
+
   vendas Venda[]
   @@map("produtos")
 }
@@ -31,10 +34,8 @@ model CustoProduto {
   id String @id @default(uuid())
   custo_unitario Float
   margem_de_lucro Float
-  produtos Produto @relation(fields: [produto_id], references: [id])
-  
-  produto_id String 
-
+   
+  produtos Produto[]
   @@map("custos")
 }
 

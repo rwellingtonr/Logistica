@@ -1,7 +1,7 @@
 import { serverHttp } from "./app"
 
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 
 serverHttp.listen(port, () => {
-  console.log(`Running in the port: ${port}`)
+  console.log(`Running port: ${port}`)
 })

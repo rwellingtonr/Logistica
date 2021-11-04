@@ -1,7 +1,7 @@
 import "dotenv/config"
-import http from 'http'
-import express from "express"
+import express from 'express'
 import cors from "cors"
+import http from "http"
 import { router } from "./routes"
 
 // Start the app
