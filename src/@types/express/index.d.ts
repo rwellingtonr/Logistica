@@ -1,8 +1,7 @@
 declare namespace Express {
     export interface Request {
+        produto_id: string
         colaborador_id: string
-        custo_id: String
-        produto_id: String
     }
   }
   

@@ -5,9 +5,7 @@ CREATE TABLE "produtos" (
     "item" TEXT NOT NULL,
     "descricao" TEXT NOT NULL,
     "quantidade" INTEGER NOT NULL,
-    "entrada" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "colaborador_id" TEXT NOT NULL,
-    CONSTRAINT "produtos_colaborador_id_fkey" FOREIGN KEY ("colaborador_id") REFERENCES "colaboradore" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "entrada" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateTable
@@ -16,7 +14,9 @@ CREATE TABLE "custos" (
     "custo_unitario" REAL NOT NULL,
     "margem_de_lucro" REAL NOT NULL,
     "produto_id" TEXT NOT NULL,
-    CONSTRAINT "custos_produto_id_fkey" FOREIGN KEY ("produto_id") REFERENCES "produtos" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "colaborador_id" TEXT NOT NULL,
+    CONSTRAINT "custos_produto_id_fkey" FOREIGN KEY ("produto_id") REFERENCES "produtos" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "custos_colaborador_id_fkey" FOREIGN KEY ("colaborador_id") REFERENCES "colaboradore" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
