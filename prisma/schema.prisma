@@ -11,26 +11,58 @@ datasource db {
 }
 
 // produtos a serem cadastrados
-model Produtos {
-  id String @id @unique @default(uuid())
+model Produto {
+  id String @id @default(uuid())
   tipo String
-  item String @unique 
+  item String @unique
   descricao String
   quantidade Int
   entrada DateTime @default(now())
-  operador String
+
+  colaborador Colaborador @relation(fields: [colaborador_id], references: [id])
+  colaborador_id String
 
   custos CustoProduto[]
+  vendas Venda[]
   @@map("produtos")
 }
 
 model CustoProduto {
-  id String @id @unique @default(uuid())
+  id String @id @default(uuid())
   custo_unitario Float
   margem_de_lucro Float
-  produtos Produtos @relation(fields: [item_id], references: [id])
+  produtos Produto @relation(fields: [produto_id], references: [id])
   
-  item_id String 
+  produto_id String 
 
   @@map("custos")
+}
+
+model Colaborador{
+  id String @id @default(uuid())
+  nome String 
+  sobrenome String?
+  funcao String
+  turno String @default("ADM")
+  email String @unique
+
+
+  produtos Produto[]
+  vendas Venda[]
+  @@map("colaboradore")
+}
+
+model Venda{
+  id String @id @default(uuid())
+  cliente String 
+  receita_bruta Float
+  receita_liquida Float
+
+  produto Produto @relation(fields: [produto_id], references: [id])
+  produto_id String
+
+  colaborador Colaborador @relation(fields: [colaborador_id], references: [id])
+  colaborador_id String
+
+  @@map("venda")
 }
