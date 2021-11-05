@@ -16,7 +16,7 @@ class EntryNewProductController {
     try {
       const result = await service.execute(
         tipo,
-        item,
+        item.toLowerCase(),
         descricao,
         quantidade,
         custo_unitario,

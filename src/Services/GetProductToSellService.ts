@@ -10,6 +10,7 @@ class GetProductToSellService {
           },
         },
       },
+      orderBy: { item: "asc" },
     })
 
     return procurarItem

@@ -3,7 +3,6 @@ import { GetProductToSellService } from "../Services/GetProductToSellService"
 
 class GetProductToSellController {
   async handle(req: Request, resp: Response) {
-   
     try {
       const service = new GetProductToSellService()
 
