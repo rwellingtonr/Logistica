@@ -19,8 +19,7 @@ model Produto {
   quantidade Int
   entrada DateTime @default(now())
 
-  
-
+  colaborador Colaborador? @relation("nomeColaborador")
   
   custos CustoProduto[]
   vendas Venda[]
@@ -35,9 +34,6 @@ model CustoProduto {
   produto Produto @relation(fields: [produto_id], references: [id])
   produto_id String
   
-  colaborador Colaborador @relation(fields: [colaborador_id], references: [id])
-  colaborador_id String
-
   @@map("custos")
 }
 
@@ -45,12 +41,13 @@ model Colaborador{
   id String @id @default(uuid())
   nome String 
   sobrenome String?
-  funcao String
+  funcao String?
   turno String @default("ADM")
-  email String @unique
+  email String? @unique
 
+  produtoCadastrado Produto? @relation(name: "nomeColaborador", fields: [produto_id], references: [id])
+  produto_id String?
 
-  custos CustoProduto[]
   vendas Venda[]
   @@map("colaboradore")
 }

@@ -1,35 +1,45 @@
 import prismaClient from "../../prisma"
 import { io } from "../webSocket"
 
-class EntryNewProductServices{
-    async execute (custo_unitario: number, margem_de_lucro: number, produto_id: string, colaborador_id:string) {
-        const produto = await prismaClient.custoProduto.create({
-            data:{custo_unitario, margem_de_lucro, produto_id, colaborador_id},
-        include:{produto: true, colaborador: true}})
-
-
-        const infoProd = {
-            produto: {
-                item: produto.produto.item,
-                tipo: produto.produto.tipo,
-                descricao: produto.produto.descricao,
-                quantidade:produto.produto.quantidade,
-                entrada: produto.produto.entrada,
+class EntryNewProductServices {
+  async execute(
+    tipo: string,
+    item: string,
+    descricao: string,
+    quantidade: number,
+    custo_unitario: number,
+    margem_de_lucro: number
+  ) {
+    const novoProduto = await prismaClient.produto.create({
+      data: {
+        tipo,
+        item,
+        descricao,
+        quantidade,
+        custos: {
+          create: [
+            {
+              custo_unitario,
+              margem_de_lucro,
             },
-            colaborador: produto.colaborador.nome,
-            custo_unitario: produto.custo_unitario,
-            margem_de_lucro: produto.margem_de_lucro,
-            produto_id: produto.produto_id,
-        }
+          ],
+        },
+      },
+      include: { custos: true },
+    })
 
+    // const infoProd = {
+    //   tipo,
+    //     item,
+    //     descricao,
+    //     quantidade,
 
-        io.emit("novo_produto", infoProd)
+    // }
 
-        return produto
+    // io.emit("novo_produto", infoProd)
 
-    }
-
+    return novoProduto
+  }
 }
 
-
-export {EntryNewProductServices}
+export { EntryNewProductServices }
