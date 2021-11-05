@@ -6,9 +6,13 @@ class GetItemController {
     const { item } = req.body
     try {
       const service = new GetItemServices()
-      const result = service.execute(item)
+
+      const result = await service.execute(item)
+
       return resp.json(result)
-    } catch (error) {}
+    } catch (error) {
+      return resp.status(401).json("Produto não encontrado")
+    }
   }
 }
 export { GetItemController }

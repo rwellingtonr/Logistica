@@ -1,15 +1,16 @@
 import { Router } from "express"
 import { EntryNewProductController } from "./Controller/EntryNewProductController"
 import { GetItemController } from "./Controller/GetItemController"
+import { UpdateProductController } from "./Controller/UpdateProductController"
 
 const router = Router()
 
 router.post("/cadastro-de-produto", new EntryNewProductController().handle)
 
-router.get("procura", new GetItemController().handle)
+router.get("/itens-cadastrados", new GetItemController().handle)
 
 // router.post("venda", new SoldItemsController().handle)
 
-// router.update("")
+router.put("/update-quantidade", new UpdateProductController().handle)
 
 export { router }

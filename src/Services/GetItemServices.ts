@@ -2,11 +2,11 @@ import prismaClient from "../../prisma"
 
 class GetItemServices {
   async execute(item: string) {
-    const itemProcurado = prismaClient.produto.findFirst({
+    const procurarItem = await prismaClient.produto.findFirst({
       where: { item },
     })
 
-    return itemProcurado
+    return procurarItem
   }
 }
 export { GetItemServices }
