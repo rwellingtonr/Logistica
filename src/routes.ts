@@ -3,7 +3,7 @@ import { EntryNewProductController } from "./Controller/EntryNewProductControlle
 import { GetProductToSellController } from "./Controller/GetProductToSellController"
 import { UpdateProductController } from "./Controller/UpdateProductController"
 // import { DeleteProductController } from "./Controller/DeleteProductController"
-// import { SoldItemsController } from "./Controller/SoldItemsController"
+import { SoldItemController } from "./Controller/SoldItemController"
 
 const router = Router()
 
@@ -11,7 +11,7 @@ router.post("/cadastro-de-produto", new EntryNewProductController().handle)
 
 router.get("/itens-cadastrados", new GetProductToSellController().handle)
 
-// router.post("/venda", new SoldItemsController().handle)
+router.post("/venda", new SoldItemController().handle)
 
 router.put("/update-quantidade", new UpdateProductController().handle)
 

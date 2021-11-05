@@ -61,8 +61,8 @@ model Venda{
   produto Produto @relation(fields: [produto_id], references: [id])
   produto_id String
 
-  colaborador Colaborador @relation(fields: [colaborador_id], references: [id])
-  colaborador_id String
+  colaborador Colaborador? @relation(fields: [colaborador_id], references: [id])
+  colaborador_id String?
 
   @@map("venda")
 }
