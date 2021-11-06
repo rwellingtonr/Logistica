@@ -1,19 +1,24 @@
 import { NextFunction, Response, Request } from "express"
 import prismaClient from "../../prisma"
 
+interface IData {
+  item: string
+  quantity: number
+}
+
 interface IQtd {
   quantidade: number
 }
 
 const CheckItems = async (req: Request, resp: Response, next: NextFunction) => {
-  const { item, quantity } = req.body
+  const { item, quantity } = req.body as IData
 
   const { quantidade } = (await prismaClient.produto.findFirst({
-    where: { item },
+    where: { item: item.toLowerCase() },
     select: { quantidade: true },
   })) as IQtd
 
-  if (quantidade >= quantity) {
+  if (quantidade + quantity >= 0 || quantidade >= quantity) {
     //retorna a próxima função
     return next()
   }

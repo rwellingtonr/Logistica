@@ -19,7 +19,11 @@ router.post("/cadastro-de-produto", new EntryNewProductController().handle)
 router.post("/venda", CheckItems, new SoldItemController().handle)
 /*PUT*/
 
-router.put("/update-quantidade", new UpdateProductController().handle)
+router.put(
+  "/update-quantidade",
+  CheckItems,
+  new UpdateProductController().handle
+)
 
 /*DELETE*/
 router.delete("/deletar-item", new DeleteProductController().handle)
