@@ -15,6 +15,7 @@ class SoldItemService {
           },
         },
       },
+      include: { vendas: true },
     })
 
     return sellItem
