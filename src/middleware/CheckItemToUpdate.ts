@@ -1,26 +1,23 @@
 import { NextFunction, Response, Request } from "express"
-import prismaClient from "../../prisma"
-import { IData, IQtd } from "./Interface"
+import { Getter } from "./Getter"
+import { IData } from "./Interface"
 
-const CheckItemsToSell = async (
+const CheckItemToUpdate = async (
   req: Request,
   resp: Response,
   next: NextFunction
 ) => {
-  const { item, quantity } = req.body as IData
+  const { item, entry } = req.body as IData
+  const quantidade = await Getter(item.toLowerCase())
 
-  const { quantidade } = (await prismaClient.produto.findFirst({
-    where: { item: item.toLowerCase() },
-    select: { quantidade: true },
-  })) as IQtd
+  const valor = quantidade + entry //Entry pode assumir valor negativo
 
-  if (quantidade >= quantity) {
+  if ((quantidade && valor) > 0) {
     //retorna a próxima função
     return next()
   }
-  // Se a quantidade solicita para vendar for maior que a em estoque,
-  // Então, retorna uma mensagem de erro
+
   return resp.status(401).json({ error: "Erro! quantidade insuficiente" })
 }
 
-export default CheckItemsToSell
+export default CheckItemToUpdate

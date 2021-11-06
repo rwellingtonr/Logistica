@@ -7,6 +7,7 @@ import { DeleteProductController } from "./Controller/DeleteProductController"
 
 /* Middleware */
 import CheckItemsToSell from "./middleware/CheckItemsToSell"
+import CheckItemToUpdate from "./middleware/CheckItemToUpdate"
 
 const router = Router()
 
@@ -19,7 +20,11 @@ router.post("/cadastro-de-produto", new EntryNewProductController().handle)
 router.post("/venda", CheckItemsToSell, new SoldItemController().handle)
 
 /*PUT*/
-router.put("/update-quantidade", new UpdateProductController().handle)
+router.put(
+  "/update-quantidade",
+  CheckItemToUpdate,
+  new UpdateProductController().handle
+)
 
 /*DELETE*/
 router.delete("/deletar-item", new DeleteProductController().handle)

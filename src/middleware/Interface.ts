@@ -1,6 +1,6 @@
 export interface IData {
   item: string
-  quantity: number
+  entry: number
 }
 
 export interface IQtd {
