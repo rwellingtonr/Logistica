@@ -20,9 +20,11 @@ model Produto {
   entrada DateTime @default(now())
 
   colaborador Colaborador? @relation("nomeColaborador")
-  
   custos CustoProduto[]
-  vendas Venda[]
+  
+  vendas Venda? @relation(fields: [vendas_id], references: [id])
+  vendas_id String?
+
   @@map("produtos")
 }
 
@@ -54,12 +56,12 @@ model Colaborador{
 
 model Venda{
   id String @id @default(uuid())
+  item String
   cliente String 
   receita_bruta Float
   receita_liquida Float
-
-  produto Produto @relation(fields: [produto_id], references: [id])
-  produto_id String
+  
+  produtos Produto[]
 
   colaborador Colaborador? @relation(fields: [colaborador_id], references: [id])
   colaborador_id String?

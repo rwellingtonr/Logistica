@@ -5,7 +5,9 @@ CREATE TABLE "produtos" (
     "item" TEXT NOT NULL,
     "descricao" TEXT NOT NULL,
     "quantidade" INTEGER NOT NULL,
-    "entrada" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "entrada" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "vendas_id" TEXT,
+    CONSTRAINT "produtos_vendas_id_fkey" FOREIGN KEY ("vendas_id") REFERENCES "venda" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -35,10 +37,8 @@ CREATE TABLE "venda" (
     "cliente" TEXT NOT NULL,
     "receita_bruta" REAL NOT NULL,
     "receita_liquida" REAL NOT NULL,
-    "produto_id" TEXT NOT NULL,
-    "colaborador_id" TEXT NOT NULL,
-    CONSTRAINT "venda_produto_id_fkey" FOREIGN KEY ("produto_id") REFERENCES "produtos" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "venda_colaborador_id_fkey" FOREIGN KEY ("colaborador_id") REFERENCES "colaboradore" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "colaborador_id" TEXT,
+    CONSTRAINT "venda_colaborador_id_fkey" FOREIGN KEY ("colaborador_id") REFERENCES "colaboradore" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateIndex
