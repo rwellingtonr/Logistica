@@ -1,5 +1,4 @@
 import prismaClient from "../../prisma"
-import { io } from "../webSocket"
 
 class EntryNewProductServices {
   async execute(
@@ -27,16 +26,6 @@ class EntryNewProductServices {
       },
       include: { custos: true },
     })
-
-    // const infoProd = {
-    //   tipo,
-    //     item,
-    //     descricao,
-    //     quantidade,
-
-    // }
-
-    // io.emit("novo_produto", infoProd)
 
     return novoProduto
   }
