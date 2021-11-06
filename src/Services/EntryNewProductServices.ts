@@ -1,3 +1,7 @@
+/*
+ * Cadastra um novo produto no banco de dados
+ */
+
 import prismaClient from "../../prisma"
 
 class EntryNewProductServices {
