@@ -6,12 +6,22 @@
 
 import { SoldItemService } from "../Services/SoldItemService"
 import { Request, Response } from "express"
+
+interface IItemToSell {
+  client_name: string
+  item: string
+  quantity: number
+}
+
 class SoldItemController {
   async handle(req: Request, resp: Response) {
     try {
-      const { client_name, item, quantity } = req.body
+      let { client_name, item, quantity } = req.body as IItemToSell
 
       const service = new SoldItemService()
+
+      client_name = client_name.toLowerCase()
+      item = item.toLowerCase()
 
       const result = await service.execute(client_name, item, quantity)
       resp.json(result)
