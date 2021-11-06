@@ -1,3 +1,6 @@
+/*
+ * Deleta os item encontrado e suas respctivas informações
+ */
 import prismaClient from "../../prisma"
 
 class DeleteProductService {

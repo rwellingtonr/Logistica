@@ -20,11 +20,11 @@ model Produto {
   entrada DateTime @default(now())
 
   colaborador Colaborador? @relation("nomeColaborador")
-  custos CustoProduto[]
   
   vendas Venda? @relation(fields: [vendas_id], references: [id])
   vendas_id String?
 
+  custos CustoProduto[]
   @@map("produtos")
 }
 
@@ -33,8 +33,8 @@ model CustoProduto {
   custo_unitario Float
   margem_de_lucro Float
   
-  produto Produto @relation(fields: [produto_id], references: [id])
-  produto_id String
+  produto Produto? @relation(fields: [produto_id], references: [id])
+  produto_id String?
   
   @@map("custos")
 }
