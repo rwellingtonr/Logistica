@@ -6,7 +6,7 @@ import { SoldItemController } from "./Controller/SoldItemController"
 import { DeleteProductController } from "./Controller/DeleteProductController"
 
 /* Middleware */
-import CheckItems from "./middleware/CheckItems"
+import CheckItemsToSell from "./middleware/CheckItemsToSell"
 
 const router = Router()
 
@@ -16,14 +16,10 @@ router.get("/itens-cadastrados", new GetProductToSellController().handle)
 /*POST*/
 router.post("/cadastro-de-produto", new EntryNewProductController().handle)
 
-router.post("/venda", CheckItems, new SoldItemController().handle)
-/*PUT*/
+router.post("/venda", CheckItemsToSell, new SoldItemController().handle)
 
-router.put(
-  "/update-quantidade",
-  CheckItems,
-  new UpdateProductController().handle
-)
+/*PUT*/
+router.put("/update-quantidade", new UpdateProductController().handle)
 
 /*DELETE*/
 router.delete("/deletar-item", new DeleteProductController().handle)

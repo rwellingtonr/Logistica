@@ -1,3 +1,7 @@
+/*
+ * Retorna todos os itens presentes no banco de dados
+ */
+
 import { Request, Response } from "express"
 import { GetProductToSellService } from "../Services/GetProductToSellService"
 

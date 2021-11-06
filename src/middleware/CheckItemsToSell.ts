@@ -10,7 +10,11 @@ interface IQtd {
   quantidade: number
 }
 
-const CheckItems = async (req: Request, resp: Response, next: NextFunction) => {
+const CheckItemsToSell = async (
+  req: Request,
+  resp: Response,
+  next: NextFunction
+) => {
   const { item, quantity } = req.body as IData
 
   const { quantidade } = (await prismaClient.produto.findFirst({
@@ -18,7 +22,7 @@ const CheckItems = async (req: Request, resp: Response, next: NextFunction) => {
     select: { quantidade: true },
   })) as IQtd
 
-  if (quantidade + quantity >= 0 || quantidade >= quantity) {
+  if (quantidade >= quantity) {
     //retorna a próxima função
     return next()
   }
@@ -27,4 +31,4 @@ const CheckItems = async (req: Request, resp: Response, next: NextFunction) => {
   return resp.status(401).json({ error: "Erro! quantidade insuficiente" })
 }
 
-export default CheckItems
+export default CheckItemsToSell

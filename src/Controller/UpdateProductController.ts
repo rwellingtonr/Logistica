@@ -5,10 +5,14 @@
 import { Request, Response } from "express"
 import { UpdateProductServices } from "../Services/UpdateProductServices"
 
+interface IUpdateQuantity {
+  item: string
+  quantity: number
+}
+
 class UpdateProductController {
   async handle(req: Request, resp: Response) {
     const { item, quantity } = req.body
-
     try {
       const service = new UpdateProductServices()
       const result = await service.execute(item.toLowerCase(), quantity)
