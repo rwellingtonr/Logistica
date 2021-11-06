@@ -2,8 +2,10 @@ import { Router } from "express"
 import { EntryNewProductController } from "./Controller/EntryNewProductController"
 import { GetProductToSellController } from "./Controller/GetProductToSellController"
 import { UpdateProductController } from "./Controller/UpdateProductController"
-// import { DeleteProductController } from "./Controller/DeleteProductController"
 import { SoldItemController } from "./Controller/SoldItemController"
+import { DeleteProductController } from "./Controller/DeleteProductController"
+
+/* Middleware */
 import CheckItems from "./middleware/CheckItems"
 
 const router = Router()
@@ -20,6 +22,6 @@ router.post("/venda", CheckItems, new SoldItemController().handle)
 router.put("/update-quantidade", new UpdateProductController().handle)
 
 /*DELETE*/
-// route.delete("/deletar-item", new DeleteProductController().handle)
+router.delete("/deletar-item", new DeleteProductController().handle)
 
 export { router }
