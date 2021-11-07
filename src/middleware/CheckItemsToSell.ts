@@ -13,7 +13,9 @@ const CheckItemsToSell = async (
   next: NextFunction
 ) => {
   const { item, entradeQtdProduto } = req.body as IData
-  const quantidade = await Getter(item.toLowerCase())
+  const dados = await Getter(item.toLowerCase())
+
+  const quantidade = dados.quantidade
 
   if (quantidade >= entradeQtdProduto) {
     //retorna a próxima função

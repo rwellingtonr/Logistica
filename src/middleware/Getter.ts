@@ -2,13 +2,15 @@
  * Recebe as informações do produto a ser inspecionado
  */
 import prismaClient from "../../prisma"
-import { IQtd } from "./Interface"
 
 export async function Getter(item: string) {
-  const { quantidade } = (await prismaClient.produto.findFirst({
+  const dados = await prismaClient.produto.findFirst({
     where: { item },
-    select: { quantidade: true },
-  })) as IQtd
+    select: {
+      quantidade: true,
+      custos: { select: { custo_unitario: true, margem_de_lucro: true } },
+    },
+  })
 
-  return quantidade
+  return dados
 }

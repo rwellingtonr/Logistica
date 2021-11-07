@@ -13,7 +13,7 @@ const CheckItemToUpdate = async (
   next: NextFunction
 ) => {
   const { item, entradeQtdProduto } = req.body as IData
-  const quantidade = await Getter(item.toLowerCase())
+  const { quantidade } = await Getter(item.toLowerCase())
 
   const valor = quantidade + entradeQtdProduto //Entry pode assumir valor negativo
 
