@@ -17,7 +17,12 @@ const CheckItemsToSell = async (
 
   const quantidade = dados.quantidade
 
+  const { custo_unitario, margem_de_lucro } = dados.custos[0]
+
   if (quantidade >= entradeQtdProduto) {
+    //Adiciona metricas para futuros cálculos
+    req.custo_unitario = custo_unitario
+    req.margem_de_lucro = margem_de_lucro
     //retorna a próxima função
     return next()
   }
