@@ -2,7 +2,7 @@
  * Define a porta do servidor ser utilizada
  */
 
-import { serverHttp } from "./app"
+import { serverHttp } from "../app"
 
 const port = process.env.PORT || 3000
 

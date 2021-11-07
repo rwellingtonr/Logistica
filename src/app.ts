@@ -2,7 +2,7 @@ import "dotenv/config"
 import express from "express"
 import cors from "cors"
 import http from "http"
-import { router } from "./routes"
+import { router } from "./Routes/routes"
 
 // Start the app
 const app = express()

@@ -1,13 +1,13 @@
 import { Router } from "express"
-import { EntryNewProductController } from "./Controller/EntryNewProductController"
-import { GetProductToSellController } from "./Controller/GetProductToSellController"
-import { UpdateProductController } from "./Controller/UpdateProductController"
-import { SoldItemController } from "./Controller/SoldItemController"
-import { DeleteProductController } from "./Controller/DeleteProductController"
+import { DeleteProductController } from "../Controller/DeleteProductController"
+import { EntryNewProductController } from "../Controller/EntryNewProductController"
+import { GetProductToSellController } from "../Controller/GetProductToSellController"
+import { SoldItemController } from "../Controller/SoldItemController"
+import { UpdateProductController } from "../Controller/UpdateProductController"
 
 /* Middleware */
-import CheckItemsToSell from "./middleware/CheckItemsToSell"
-import CheckItemToUpdate from "./middleware/CheckItemToUpdate"
+import CheckItemsToSell from "../middleware/CheckItemsToSell"
+import CheckItemToUpdate from "../middleware/CheckItemToUpdate"
 
 const router = Router()
 
