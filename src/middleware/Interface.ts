@@ -4,5 +4,5 @@
 
 export interface IData {
   item: string
-  entradeQtdProduto: number
+  qtdProduto: number
 }

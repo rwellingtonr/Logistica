@@ -6,12 +6,12 @@
 import prismaClient from "../../prisma"
 
 class UpdateProductServices {
-  async execute(item: string, entradeQtdProduto: number) {
+  async execute(item: string, qtdProduto: number) {
     const itemAtualizado = await prismaClient.produto.update({
       where: { item },
       data: {
         quantidade: {
-          increment: entradeQtdProduto,
+          increment: qtdProduto,
         },
       },
     })

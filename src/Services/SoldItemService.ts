@@ -8,14 +8,14 @@ class SoldItemService {
   async execute(
     client_name: string,
     item: string,
-    vendasQtdProduto: number,
+    qtdProduto: number,
     receita_bruta: number,
     receita_liquida: number
   ) {
     const sellItem = await prismaClient.produto.update({
       where: { item },
       data: {
-        quantidade: { decrement: vendasQtdProduto },
+        quantidade: { decrement: qtdProduto },
         vendas: {
           create: {
             cliente: client_name,

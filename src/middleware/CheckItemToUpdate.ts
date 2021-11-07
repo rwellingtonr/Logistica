@@ -12,17 +12,21 @@ const CheckItemToUpdate = async (
   resp: Response,
   next: NextFunction
 ) => {
-  const { item, entradeQtdProduto } = req.body as IData
-  const { quantidade } = await Getter(item.toLowerCase())
+  try {
+    const { item, qtdProduto } = req.body as IData
+    const { quantidade } = await Getter(item.toLowerCase())
 
-  const valor = quantidade + entradeQtdProduto //Entry pode assumir valor negativo
+    const valor = quantidade + qtdProduto //Entry pode assumir valor negativo
 
-  if ((quantidade && valor) > 0) {
-    //retorna a próxima função
-    return next()
+    if ((quantidade && valor) > 0) {
+      //retorna a próxima função
+      return next()
+    }
+    return resp.status(401).json({ error: "Erro! quantidade insuficiente" })
+  } catch (error) {
+    console.log(error)
+    return resp.status(401).json("Item inexistente")
   }
-
-  return resp.status(401).json({ error: "Erro! quantidade insuficiente" })
 }
 
 export default CheckItemToUpdate

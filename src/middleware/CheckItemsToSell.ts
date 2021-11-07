@@ -12,14 +12,14 @@ const CheckItemsToSell = async (
   resp: Response,
   next: NextFunction
 ) => {
-  const { item, entradeQtdProduto } = req.body as IData
+  const { item, qtdProduto } = req.body as IData
   const dados = await Getter(item.toLowerCase())
 
   //Separa os dados recebidos do Getter
   const { quantidade } = dados
   const { custo_unitario, margem_de_lucro } = dados.custos[0]
 
-  if (quantidade >= entradeQtdProduto) {
+  if (quantidade >= qtdProduto) {
     //Adiciona metricas para futuros cálculos
     req.custo_unitario = custo_unitario
     req.margem_de_lucro = margem_de_lucro

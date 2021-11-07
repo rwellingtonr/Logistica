@@ -7,18 +7,15 @@ import { UpdateProductServices } from "../Services/UpdateProductServices"
 
 interface IUpdateQuantity {
   item: string
-  entradeQtdProduto: number
+  qtdProduto: number
 }
 
 class UpdateProductController {
   async handle(req: Request, resp: Response) {
-    const { item, entradeQtdProduto } = req.body as IUpdateQuantity
+    const { item, qtdProduto } = req.body as IUpdateQuantity
     try {
       const service = new UpdateProductServices()
-      const result = await service.execute(
-        item.toLowerCase(),
-        entradeQtdProduto
-      )
+      const result = await service.execute(item.toLowerCase(), qtdProduto)
       return resp.json(result)
     } catch (error) {
       console.error(error)
