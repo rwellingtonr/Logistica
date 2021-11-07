@@ -5,11 +5,11 @@
 import prismaClient from "../../prisma"
 
 class SoldItemService {
-  async execute(client_name: string, item: string, entry: number) {
+  async execute(client_name: string, item: string, entradeQtdProduto: number) {
     const sellItem = await prismaClient.produto.update({
       where: { item },
       data: {
-        quantidade: { decrement: entry },
+        quantidade: { decrement: entradeQtdProduto },
         vendas: {
           create: {
             cliente: client_name,

@@ -4,7 +4,7 @@
 
 export interface IData {
   item: string
-  entry: number
+  entradeQtdProduto: number
 }
 
 export interface IQtd {

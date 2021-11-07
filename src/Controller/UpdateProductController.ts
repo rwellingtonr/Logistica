@@ -7,18 +7,22 @@ import { UpdateProductServices } from "../Services/UpdateProductServices"
 
 interface IUpdateQuantity {
   item: string
-  entry: number
+  entradeQtdProduto: number
 }
 
 class UpdateProductController {
   async handle(req: Request, resp: Response) {
-    const { item, entry } = req.body
+    const { item, entradeQtdProduto } = req.body as IUpdateQuantity
     try {
       const service = new UpdateProductServices()
-      const result = await service.execute(item.toLowerCase(), entry)
+      const result = await service.execute(
+        item.toLowerCase(),
+        entradeQtdProduto
+      )
       return resp.json(result)
     } catch (error) {
-      return resp.status(401).json("Erro ao atualizar os dados")
+      console.error(error)
+      return resp.status(401).json(`Erro ao atualizar os dados...`)
     }
   }
 }

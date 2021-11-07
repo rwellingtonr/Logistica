@@ -42,7 +42,8 @@ class EntryNewProductController {
       )
       return resp.json(result)
     } catch (error) {
-      return resp.status(401).json("Verifique as entradas")
+      console.error(error)
+      return resp.status(401).json("Produto já cadastrado")
     }
   }
 }

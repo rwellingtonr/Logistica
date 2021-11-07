@@ -1,3 +1,8 @@
+/*
+ * Retorna todos os produtos cadastrados
+ * ordenados pelo item de forma crescente
+ */
+
 import prismaClient from "../../prisma"
 
 class GetProductToSellService {

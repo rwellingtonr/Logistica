@@ -12,10 +12,10 @@ const CheckItemToUpdate = async (
   resp: Response,
   next: NextFunction
 ) => {
-  const { item, entry } = req.body as IData
+  const { item, entradeQtdProduto } = req.body as IData
   const quantidade = await Getter(item.toLowerCase())
 
-  const valor = quantidade + entry //Entry pode assumir valor negativo
+  const valor = quantidade + entradeQtdProduto //Entry pode assumir valor negativo
 
   if ((quantidade && valor) > 0) {
     //retorna a próxima função

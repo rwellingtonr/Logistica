@@ -14,7 +14,8 @@ class DeleteProductController {
 
       return resp.json(result)
     } catch (error) {
-      return resp.status(401).json(`Erro ao deletar item. Erro: ${error}`)
+      console.error(error)
+      return resp.status(401).json(`Erro ao deletar item.`)
     }
   }
 }
