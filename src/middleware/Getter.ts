@@ -8,7 +8,7 @@ export async function Getter(item: string) {
     where: { item },
     select: {
       quantidade: true,
-      custos: { select: { custo_unitario: true, margem_de_lucro: true } },
+      custos: { select: { custo_final: true, lucro: true } },
     },
   })
 

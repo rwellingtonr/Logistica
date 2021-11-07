@@ -32,6 +32,8 @@ model CustoProduto {
   id String @id @default(uuid())
   custo_unitario Float
   margem_de_lucro Float
+  custo_final Float?
+  lucro Float?
   
   produto Produto? @relation(fields: [produto_id], references: [id])
   produto_id String?

@@ -15,8 +15,10 @@ CREATE TABLE "custos" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "custo_unitario" REAL NOT NULL,
     "margem_de_lucro" REAL NOT NULL,
-    "produto_id" TEXT NOT NULL,
-    CONSTRAINT "custos_produto_id_fkey" FOREIGN KEY ("produto_id") REFERENCES "produtos" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "custo_final" REAL,
+    "lucro" REAL,
+    "produto_id" TEXT,
+    CONSTRAINT "custos_produto_id_fkey" FOREIGN KEY ("produto_id") REFERENCES "produtos" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -34,6 +36,7 @@ CREATE TABLE "colaboradore" (
 -- CreateTable
 CREATE TABLE "venda" (
     "id" TEXT NOT NULL PRIMARY KEY,
+    "item" TEXT NOT NULL,
     "cliente" TEXT NOT NULL,
     "receita_bruta" REAL NOT NULL,
     "receita_liquida" REAL NOT NULL,

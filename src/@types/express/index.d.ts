@@ -2,7 +2,7 @@
 
 declare namespace Express {
   export interface Request {
-    custo_unitario: number
-    margem_de_lucro: number
+    custo_final: number
+    lucro: number
   }
 }

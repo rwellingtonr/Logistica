@@ -6,7 +6,6 @@
 
 import { SoldItemService } from "../Services/SoldItemService"
 import { Request, Response } from "express"
-import { Receita } from "../Job/Seller"
 
 interface IItemToSell {
   client_name: string
@@ -17,9 +16,7 @@ interface IItemToSell {
 class SoldItemController {
   async handle(req: Request, resp: Response) {
     try {
-      const { custo_unitario, margem_de_lucro } = req
-      //Calcura a receita da venda
-      const { receitaBruta, lucro } = Receita(custo_unitario, margem_de_lucro)
+      const { custo_final, lucro } = req
 
       let { client_name, item, qtdProduto } = req.body as IItemToSell
       client_name = client_name.toLowerCase()
@@ -30,7 +27,7 @@ class SoldItemController {
         client_name,
         item,
         qtdProduto,
-        receitaBruta,
+        custo_final,
         lucro
       )
       resp.json(result)

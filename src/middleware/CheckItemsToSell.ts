@@ -12,23 +12,28 @@ const CheckItemsToSell = async (
   resp: Response,
   next: NextFunction
 ) => {
-  const { item, qtdProduto } = req.body as IData
-  const dados = await Getter(item.toLowerCase())
+  try {
+    const { item, qtdProduto } = req.body as IData
+    const dados = await Getter(item.toLowerCase())
 
-  //Separa os dados recebidos do Getter
-  const { quantidade } = dados
-  const { custo_unitario, margem_de_lucro } = dados.custos[0]
+    //Separa os dados recebidos do Getter
+    const { quantidade } = dados
+    const { custo_final, lucro } = dados.custos[0]
 
-  if (quantidade >= qtdProduto) {
-    //Adiciona metricas para futuros cálculos
-    req.custo_unitario = custo_unitario
-    req.margem_de_lucro = margem_de_lucro
-    //retorna a próxima função
-    return next()
+    if (quantidade >= qtdProduto) {
+      //Adiciona metricas para futuros cálculos
+      req.custo_final = custo_final
+      req.lucro = lucro
+      //retorna a próxima função
+      return next()
+    }
+    // Se a quantidade solicita para vendar for maior que a em estoque,
+    // Então, retorna uma mensagem de erro
+    return resp.status(401).json({ error: "Erro! quantidade insuficiente" })
+  } catch (error) {
+    console.log(error)
+    return resp.status(401).json("Item inexistente")
   }
-  // Se a quantidade solicita para vendar for maior que a em estoque,
-  // Então, retorna uma mensagem de erro
-  return resp.status(401).json({ error: "Erro! quantidade insuficiente" })
 }
 
 export default CheckItemsToSell

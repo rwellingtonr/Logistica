@@ -4,6 +4,7 @@
 
 import { EntryNewProductServices } from "../Services/EntryNewProductServices"
 import { Request, Response } from "express"
+import { Receita } from "../Job/Seller"
 
 interface IAddNewItem {
   tipo: string
@@ -31,6 +32,9 @@ class EntryNewProductController {
       item = item.toLowerCase()
       descricao = descricao.toLowerCase()
 
+      //Calcura a receita para venda
+      const { receitaBruta, lucro } = Receita(custo_unitario, margem_de_lucro)
+
       const service = new EntryNewProductServices()
       const result = await service.execute(
         tipo,
@@ -38,7 +42,9 @@ class EntryNewProductController {
         descricao,
         quantidade,
         custo_unitario,
-        margem_de_lucro
+        margem_de_lucro,
+        receitaBruta,
+        lucro
       )
       return resp.json(result)
     } catch (error) {

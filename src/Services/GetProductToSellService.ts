@@ -10,9 +10,7 @@ class GetProductToSellService {
     const procurarItem = await prismaClient.produto.findMany({
       include: {
         custos: {
-          select: {
-            custo_unitario: true,
-          },
+          select: {custo_de_final: true},
         },
       },
       orderBy: { item: "asc" },

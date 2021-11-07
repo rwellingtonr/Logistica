@@ -11,7 +11,9 @@ class EntryNewProductServices {
     descricao: string,
     quantidade: number,
     custo_unitario: number,
-    margem_de_lucro: number
+    margem_de_lucro: number,
+    custo_final: number,
+    lucro: number
   ) {
     const novoProduto = await prismaClient.produto.create({
       data: {
@@ -24,6 +26,8 @@ class EntryNewProductServices {
             {
               custo_unitario,
               margem_de_lucro,
+              custo_final,
+              lucro
             },
           ],
         },
