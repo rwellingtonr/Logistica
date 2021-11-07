@@ -1,3 +1,8 @@
+/*
+ * Verifica se o item pode ser atualizado
+ * -> O item não pode ficar negativo
+ */
+
 import { NextFunction, Response, Request } from "express"
 import { Getter } from "./Getter"
 import { IData } from "./Interface"

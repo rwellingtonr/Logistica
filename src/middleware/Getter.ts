@@ -1,4 +1,6 @@
-import { NextFunction, Response, Request } from "express"
+/*
+ * Recebe as informações do produto a ser inspecionado
+ */
 import prismaClient from "../../prisma"
 import { IQtd } from "./Interface"
 

@@ -1,5 +1,5 @@
 import "dotenv/config"
-import express from 'express'
+import express from "express"
 import cors from "cors"
 import http from "http"
 import { router } from "./routes"
@@ -7,11 +7,12 @@ import { router } from "./routes"
 // Start the app
 const app = express()
 
-app.use(cors()) //Connect the backend with the frontend
-app.use(express.json()) // To work propelly with json
-app.use(router) // web routes
+//Esbelece a conecção
+app.use(cors())
+app.use(express.json())
+app.use(router)
 
-/*Server managed by http*/
+/*Server gerenciado pelo método http*/
 const serverHttp = http.createServer(app)
 
-export {serverHttp}
+export { serverHttp }

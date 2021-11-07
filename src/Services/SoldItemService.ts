@@ -1,3 +1,7 @@
+/*
+ * Realiza a venda de derminado item existente
+ */
+
 import prismaClient from "../../prisma"
 
 class SoldItemService {

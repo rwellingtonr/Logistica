@@ -1,5 +1,9 @@
+/*
+ * Verifica se o item pode ser vendido
+ * -> A quantidade a ser vendida não pode ser maior que a quantidade em estoque!
+ */
+
 import { NextFunction, Response, Request } from "express"
-import prismaClient from "../../prisma"
 import { Getter } from "./Getter"
 import { IData } from "./Interface"
 
