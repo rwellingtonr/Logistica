@@ -11,7 +11,7 @@ import { Receita } from "../Job/Seller"
 interface IItemToSell {
   client_name: string
   item: string
-  entradeQtdProduto: number
+  vendasQtdProduto: number
 }
 
 class SoldItemController {
@@ -21,7 +21,7 @@ class SoldItemController {
       //Calcura a receita da venda
       const { receitaBruta, lucro } = Receita(custo_unitario, margem_de_lucro)
 
-      let { client_name, item, entradeQtdProduto } = req.body as IItemToSell
+      let { client_name, item, vendasQtdProduto } = req.body as IItemToSell
       client_name = client_name.toLowerCase()
       item = item.toLowerCase()
 
@@ -29,7 +29,7 @@ class SoldItemController {
       const result = await service.execute(
         client_name,
         item,
-        entradeQtdProduto,
+        vendasQtdProduto,
         receitaBruta,
         lucro
       )

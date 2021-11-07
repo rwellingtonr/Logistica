@@ -4,26 +4,18 @@
 
 import prismaClient from "../../prisma"
 
-interface Ia {
-  client_name: string
-  item: string
-  entradeQtdProduto: number
-  receita_bruta: number
-  receita_liquida: number
-}
-
 class SoldItemService {
   async execute(
     client_name: string,
     item: string,
-    entradeQtdProduto: number,
+    vendasQtdProduto: number,
     receita_bruta: number,
     receita_liquida: number
   ) {
     const sellItem = await prismaClient.produto.update({
       where: { item },
       data: {
-        quantidade: { decrement: entradeQtdProduto },
+        quantidade: { decrement: vendasQtdProduto },
         vendas: {
           create: {
             cliente: client_name,
