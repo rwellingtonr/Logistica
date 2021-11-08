@@ -27,26 +27,31 @@ class EntryNewProductController {
         custo_unitario,
         margem_de_lucro,
       } = req.body as IAddNewItem
-      //Deixa as strings em caixa baixa
-      tipo = tipo.toLowerCase()
-      item = item.toLowerCase()
-      descricao = descricao.toLowerCase()
+      //Caso a quantidade seja inferior a 0, retorna um erro
+      if ((quantidade && custo_unitario && margem_de_lucro) >= 0) {
+        //Deixa as strings em caixa baixa
+        tipo = tipo.toLowerCase()
+        item = item.toLowerCase()
+        descricao = descricao.toLowerCase()
 
-      //Calcura a receita para venda
-      const { receitaBruta, lucro } = Receita(custo_unitario, margem_de_lucro)
+        //Calcura a receita para venda
+        const { receitaBruta, lucro } = Receita(custo_unitario, margem_de_lucro)
 
-      const service = new EntryNewProductServices()
-      const result = await service.execute(
-        tipo,
-        item,
-        descricao,
-        quantidade,
-        custo_unitario,
-        margem_de_lucro,
-        receitaBruta,
-        lucro
-      )
-      return resp.json(result)
+        const service = new EntryNewProductServices()
+        const result = await service.execute(
+          tipo,
+          item,
+          descricao,
+          quantidade,
+          custo_unitario,
+          margem_de_lucro,
+          receitaBruta,
+          lucro
+        )
+        return resp.json(result)
+      } else {
+        return resp.status(401).json("Proibido cadastro negativo")
+      }
     } catch (error) {
       console.error(error)
       return resp.status(401).json("Produto já cadastrado")
