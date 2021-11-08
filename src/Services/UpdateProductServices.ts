@@ -1,5 +1,5 @@
 /*
- * Encrementa em X quantidades o produto selecionado
+ * Incrementa em X quantidades o produto selecionado
  * O valor de X pode ser positivo ou negativo
  */
 
