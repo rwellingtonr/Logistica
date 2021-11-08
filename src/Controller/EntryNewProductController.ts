@@ -28,7 +28,7 @@ class EntryNewProductController {
         margem_de_lucro,
       } = req.body as IAddNewItem
       //Caso a quantidade seja inferior a 0, retorna um erro
-      if ((quantidade && custo_unitario && margem_de_lucro) >= 0) {
+      if (quantidade >= 0 && custo_unitario >= 0 && margem_de_lucro >= 0) {
         //Deixa as strings em caixa baixa
         tipo = tipo.toLowerCase()
         item = item.toLowerCase()
