@@ -55,7 +55,7 @@ npm run dev || yarn run dev
   "descricao": "texto",
   "quantidade": número inteiro positivo,
 	"custo_unitario": número real positivo,
- 	"margem_de_lucro": número real
+ 	"margem_de_lucro": número real positivo
 }</strong>
   <li>Substitua os valores, como, texto pelo respectiva informação</li>
   <li>Submeta a requisição ao servidor.</li>
@@ -100,7 +100,7 @@ npm run dev || yarn run dev
 <div id="Requisicao" style="text-align: justify; font-size: 1.1em">
   <h2  >Requisição </h2>
   <p>Listagem de todos os itens existentes no banco de dados e suas respectivas informações, como: id, tipo, preço de venda, quantidade, ...</p>
-  <p>Segue abaixo o passo-a-passo:</p>
+  <p>Segue, abaixo, o passo-a-passo:</p>
   <ol>
     <li>Ajuste o método para GET e direcione à rota http://localhost:3000/itens-cadastrados</li>
     <li>Envie esta requisição ao servidor</li>
@@ -110,7 +110,7 @@ npm run dev || yarn run dev
 
 <div id="Deletar" style="text-align: justify; font-size: 1.1em">
   <h2>Deletar Item</h2>
-  <p></p>
+  <p>A fim deletar um item do banco de dados (estoque), realize uma requisição do método DELETE ao servidor. Favor, siga os seguintes passos:</p>
   <ol>
     <li>Ajuste o método para DELETE e direcione à rota http://localhost:3000/deletar-item</li>
     <li>Passe os seguinte parâmetros:</li>
@@ -118,7 +118,7 @@ npm run dev || yarn run dev
 	"item": "item à ser excluido do sistema"
 }</strong>
     <li>Submita esta requisição</li>
-    <li>Ao término, o sistema mostrará as informações respectivas do item que foi excluido</li>
+    <li>Ao término, o sistema mostrará as respectivas informações do item excluido</li>
   </ol>
 </div>
 
@@ -129,17 +129,17 @@ npm run dev || yarn run dev
     <li><strong style="color:lightblue">Controler:</strong> Realizam o controle dos Services. Estruturam os dados a serem enviados aos respectivos serviços (Services)</li>  
     <li><strong style="color:lightblue">Services: </strong>Realizam os serviços de criar, atualizar, procurar e deletar itens do banco de dados</li>
     <li><strong style="color:lightblue">Connection: </strong>Armazenado o arquivo que realiza a conecção com o servidor</li>  
-    <li><strong style="color:lightblue"></strong></li>
-    <li><strong style="color:lightblue"></strong></li>
-    <li><strong style="color:lightblue"></strong></li>
-    <li><strong style="color:lightblue"></strong></li>
+    <li><strong style="color:lightblue">@Types: </strong>Adicona tipagem à API do express</li>
+    <li><strong style="color:lightblue">Job: </strong>Realiza as regras de negócio. Implementada a conta de receita bruta e receita líquida</li>
+    <li><strong style="color:lightblue">Middleware: </strong>Autentica os dados passados para a função de atualização e venda de itens</li>
+    <li><strong style="color:lightblue">Routes: </strong>Organiza as rotas utilizadas no sistema</li>
   </ul>
 </div>
 
 <h1 id="Technologies" style="padding-top: 0.5em">Tecnologias</h1>
 
-| Back-End  | Database |
-| :-------: | :------: |
-|  NodeJS   |  SQLite  |
+| Back-End  | Database |   Test   |
+| :-------: | :------: | :------: |
+|  NodeJS   |  SQLite  | Insomnia |
 | ExpressJS |  Prisma  |
 |   Cors    |
