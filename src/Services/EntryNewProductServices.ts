@@ -3,40 +3,39 @@
  */
 
 import prismaClient from "../../prisma"
+import { ICreateNewItem } from "../Interface"
+import { profit } from "../Job/Seller"
 
 class EntryNewProductServices {
-  async execute(
-    tipo: string,
-    item: string,
-    descricao: string,
-    quantidade: number,
-    custo_unitario: number,
-    margem_de_lucro: number,
-    custo_final: number,
-    lucro: number
-  ) {
-    const novoProduto = await prismaClient.produto.create({
-      data: {
-        tipo,
-        item,
-        descricao,
-        quantidade,
-        custos: {
-          create: [
-            {
-              custo_unitario,
-              margem_de_lucro,
-              custo_final,
-              lucro
-            },
-          ],
-        },
-      },
-      include: { custos: true },
-    })
+	async execute(newProduct: ICreateNewItem) {
+		const { tipo, item, descricao, quantidade, custo_unitario, margem_de_lucro, custo_final } =
+			newProduct
 
-    return novoProduto
-  }
+		//Calcula a receita para venda
+		const { lucro } = profit(custo_unitario, margem_de_lucro)
+
+		const novoProduto = await prismaClient.produto.create({
+			data: {
+				tipo,
+				item,
+				descricao,
+				quantidade,
+				custos: {
+					create: [
+						{
+							custo_unitario,
+							margem_de_lucro,
+							custo_final,
+							lucro,
+						},
+					],
+				},
+			},
+			include: { custos: true },
+		})
+
+		return novoProduto
+	}
 }
 
 export { EntryNewProductServices }

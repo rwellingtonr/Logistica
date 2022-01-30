@@ -7,7 +7,7 @@ import { router } from "./Routes/routes"
 // Start the app
 const app = express()
 
-//Esbelece a conecção
+//Estabelece a conexão
 app.use(cors())
 app.use(express.json())
 app.use(router)

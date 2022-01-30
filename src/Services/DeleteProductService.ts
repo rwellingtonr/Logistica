@@ -1,15 +1,16 @@
 /*
- * Deleta os item encontrado e suas respctivas informações
+ * Deleta os item encontrado e suas respectivas informações
  */
+
 import prismaClient from "../../prisma"
 
 class DeleteProductService {
-  async execute(item: string) {
-    const itemDeleted = await prismaClient.produto.delete({
-      where: { item },
-    })
+	async execute(item: string) {
+		const itemDeleted = await prismaClient.produto.delete({
+			where: { item },
+		})
 
-    return itemDeleted
-  }
+		return itemDeleted
+	}
 }
 export { DeleteProductService }

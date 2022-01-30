@@ -6,38 +6,36 @@
 
 import { SoldItemService } from "../Services/SoldItemService"
 import { Request, Response } from "express"
+import { CheckItems } from "../Job/CheckItems/CheckItems"
 
 interface IItemToSell {
-  client_name: string
-  item: string
-  qtdProduto: number
+	client_name: string
+	item: string
+	qtdProduto: number
 }
 
 class SoldItemController {
-  async handle(req: Request, resp: Response) {
-    try {
-      const { custo_final, lucro } = req
+	async handle(req: Request, resp: Response): Promise<Response> {
+		try {
+			const { client_name, item, qtdProduto }: IItemToSell = req.body
 
-      let { client_name, item, qtdProduto } = req.body as IItemToSell
-      client_name = client_name.toLowerCase()
-      item = item.toLowerCase()
+			const checkItems = new CheckItems(item, qtdProduto)
+			const { custo_final, lucro } = await checkItems.checkItemToSell()
 
-      const service = new SoldItemService()
-      const result = await service.execute(
-        client_name,
-        item,
-        qtdProduto,
-        custo_final,
-        lucro
-      )
-      resp.json(result)
-    } catch (error) {
-      console.error(error)
-      return resp
-        .status(401)
-        .json(`Erro ao tentar vender o item, verifique os dados...`)
-    }
-  }
+			const service = new SoldItemService()
+			const result = await service.execute(
+				client_name.toLowerCase(),
+				item.toLowerCase(),
+				qtdProduto,
+				custo_final,
+				lucro
+			)
+			resp.status(200).json(result)
+		} catch (error) {
+			console.error(error)
+			return resp.status(401).json(`Erro ao tentar vender o item, verifique os dados...`)
+		}
+	}
 }
 
 export { SoldItemController }

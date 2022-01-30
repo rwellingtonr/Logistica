@@ -1,35 +1,35 @@
 /*
- * Realiza a venda de derminado item existente
+ * Realiza a venda de determinado item existente
  */
 
 import prismaClient from "../../prisma"
 
 class SoldItemService {
-  async execute(
-    client_name: string,
-    item: string,
-    qtdProduto: number,
-    receita_bruta: number,
-    receita_liquida: number
-  ) {
-    const sellItem = await prismaClient.produto.update({
-      where: { item },
-      data: {
-        quantidade: { decrement: qtdProduto },
-        vendas: {
-          create: {
-            cliente: client_name,
-            item,
-            receita_bruta,
-            receita_liquida,
-          },
-        },
-      },
-      include: { vendas: true },
-    })
+	async execute(
+		client_name: string,
+		item: string,
+		qtdProduto: number,
+		receita_bruta: number,
+		receita_liquida: number
+	) {
+		const sellItem = await prismaClient.produto.update({
+			where: { item },
+			data: {
+				quantidade: { decrement: qtdProduto },
+				vendas: {
+					create: {
+						cliente: client_name,
+						item,
+						receita_bruta,
+						receita_liquida,
+					},
+				},
+			},
+			include: { vendas: true },
+		})
 
-    return sellItem
-  }
+		return sellItem
+	}
 }
 
 export { SoldItemService }
