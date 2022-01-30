@@ -16,7 +16,7 @@
     </ul>
   </li>
   <li ><a href="#Components">Componentes</a>
-    
+
   </li>
   <li ><a href="#Technologies">Tecnologias</a></li>
 </ul>
@@ -33,10 +33,10 @@ cd Logistica
 code .
 
 #install the dependencies
-npm install || yarn install
+npm i || yarn
 
 # start the app on a new terminal window
-npm run dev || yarn run dev
+npm run dev || yarn dev
 ```
 
 <div id="Use_Cases" style="align: left; padding-top: 0.5em; text-align: justify; font-size: 1.1em ">
@@ -50,12 +50,12 @@ npm run dev || yarn run dev
   <li>Ajuste o método para POST e direcione à rota http://localhost:3000/cadastro-de-produto</li>
   <li>Passe os seguinte parâmetros:</li>
    <strong style="color: lightgreen">{
-	"tipo": "texto",
+ "tipo": "texto",
   "item": "texto",
   "descricao": "texto",
   "quantidade": número inteiro positivo,
-	"custo_unitario": número real positivo,
- 	"margem_de_lucro": número real positivo
+ "custo_unitario": número real positivo,
+  "margem_de_lucro": número real positivo
 }</strong>
   <li>Substitua os valores, como, texto pelo respectiva informação</li>
   <li>Submeta a requisição ao servidor.</li>
@@ -71,14 +71,14 @@ npm run dev || yarn run dev
   <ol>
     <li>Ajuste o método para POST e direcione à rota http://localhost:3000/venda</li>
     <li>Passe os seguinte parâmetros:</li>
-   <strong style="color: lightgreen">{ 
-"client_name": "nome do cliente", 
-  "item": "item a ser vendido", 
+   <strong style="color: lightgreen">{
+"client_name": "nome do cliente",
+  "item": "item a ser vendido",
  "qtdProduto": número inteiro positivo
 }</strong></li>
     <li>Submeta a requisição ao servidor.</li>
     <li>A API irá vender o determinado item e irá decrementar a quantidade vendida do valor total</li>
-    <li>Ao finalizar a opreação, o servidor irá retornar os dados da venda</li>
+    <li>Ao finalizar a operação, o servidor irá retornar os dados da venda</li>
   </ol>
 </div>
 
@@ -115,9 +115,9 @@ npm run dev || yarn run dev
     <li>Ajuste o método para DELETE e direcione à rota http://localhost:3000/deletar-item</li>
     <li>Passe os seguinte parâmetros:</li>
     <strong style="color: lightgreen">{
-	"item": "item à ser excluido do sistema"
+ "item": "item à ser excluido do sistema"
 }</strong>
-    <li>Submita esta requisição</li>
+    <li>Envie esta requisição</li>
     <li>Ao término, o sistema mostrará as respectivas informações do item excluido</li>
   </ol>
 </div>
@@ -126,10 +126,10 @@ npm run dev || yarn run dev
   <h1>Componentes</h1>
   <p>O código está separado por pasta onde cada uma representa uma função no desenvolver do sistema, sendo:</p>
   <ul>
-    <li><strong style="color:lightblue">Controler:</strong> Realizam o controle dos Services. Estruturam os dados a serem enviados aos respectivos serviços (Services)</li>  
+    <li><strong style="color:lightblue">Controller:</strong> Realizam o controle dos Services. Estruturam os dados a serem enviados aos respectivos serviços (Services)</li>  
     <li><strong style="color:lightblue">Services: </strong>Realizam os serviços de criar, atualizar, procurar e deletar itens do banco de dados</li>
-    <li><strong style="color:lightblue">Connection: </strong>Armazenado o arquivo que realiza a conecção com o servidor</li>  
-    <li><strong style="color:lightblue">@Types: </strong>Adicona tipagem à API do express</li>
+    <li><strong style="color:lightblue">Connection: </strong>Armazenado o arquivo que realiza a conexão com o servidor</li>  
+    <li><strong style="color:lightblue">@Types: </strong>Adiciona tipagem à API do express</li>
     <li><strong style="color:lightblue">Job: </strong>Realiza as regras de negócio. Implementada a conta de receita bruta e receita líquida</li>
     <li><strong style="color:lightblue">Middleware: </strong>Autentica os dados passados para a função de atualização e venda de itens</li>
     <li><strong style="color:lightblue">Routes: </strong>Organiza as rotas utilizadas no sistema</li>
